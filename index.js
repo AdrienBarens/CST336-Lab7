@@ -8,21 +8,21 @@ const request = require('request');
 //routes
 app.get("/", async function(req, res){
     
- let parsedData = await getImages("otters");
+ let parsedData = await getImages("otters","vertical");
  
- console.dir("parsedData: " + parsedData); //displays content of the object
+ //console.dir("parsedData: " + parsedData); //displays content of the object
     
- res.render("index", {"image":parsedData.hits[0].largeImageURL});
+ res.render("index", {"image":parsedData.hits[0]['webformatURL']});
             
 });
 
 
 app.get("/results", async function(req, res){
     
-    //console.dir(req);
     let keyword = req.query.keyword; //gets the value that the user typed in the form using the GET method
+    let orientation = req.query.orientationInput;
     
-    let parsedData = await getImages(keyword);
+    let parsedData = await getImages(keyword,orientation);
 
     res.render("results", {"images":parsedData});
     
@@ -30,16 +30,18 @@ app.get("/results", async function(req, res){
 
 
 //Returns all data from the Pixabay API as JSON format
-function getImages(keyword){
+function getImages(keyword, orientation){
     
     
-    return new Promise( function(resolve, reject){
-        request('https://pixabay.com/api/?key=15427240-0a0cdf747df6fa42f590ac319'+ "&q=" + keyword,
+    return new Promise(function(resolve, reject){
+        request('https://pixabay.com/api/?key=15427240-0a0cdf747df6fa42f590ac319'+ "&q=" + keyword + "&orientation=" + orientation,
                  function (error, response, body) {
     
                     if (!error && response.statusCode == 200  ) { //no issues in the request
                 
                         let parsedData = JSON.parse(body); //converts string to JSON
+                        
+                        //console.dir(parsedData)
                  
                         resolve(parsedData);
                         
