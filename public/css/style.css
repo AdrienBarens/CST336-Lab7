@@ -24,8 +24,9 @@ button {
 }
 
 img {
-    height: 175px;
+    margin-bottom: 1em;
 }
+
 
 .col-sm-4 {
     text-align: center;

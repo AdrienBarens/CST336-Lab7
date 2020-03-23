@@ -2,7 +2,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel="stylesheet" href="../public/css/styles.css" />
+        <link rel="stylesheet" href="/css/style.css" />
         <title> Pixabay Search (Express Version) </title>
     </head>
     <body>
@@ -24,7 +24,19 @@
         <hr>
         
         <div class="row">
-            <img src='<%=image%>'>
+            <div class="col-sm-4">
+                <img src='<%= images.hits[0].largeImageURL %>' width='250'>
+            </div>
+            <div class="col-sm-4">
+                <img src='<%= images.hits[1].largeImageURL %>' width='250'>
+            </div>
+            <div class="col-sm-4">
+                <img src='<%= images.hits[2].largeImageURL %>' width='250'>
+            </div>
+            <div class="col-sm-4">
+                <img src='<%= images.hits[3].largeImageURL %>' width='250'>
+            </div>
+            
         </div>
 
     </body>
